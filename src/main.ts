@@ -38,17 +38,19 @@ async function bootstrap() {
   );
 
   const config = new DocumentBuilder()
-    .setTitle('Blog API')
-    .setDescription('This is a simple blog api built with nest.js')
-    .setVersion('1.0')
-    .addTag('Blog')
-    .addBearerAuth(
-      { type: 'http', scheme: 'bearer', bearerFormat: 'JWT' },
-      'jwt',
-    )
-    .build();
-  const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('docs', app, document);
+  .setTitle('Blog API')
+  .setDescription('A simple blog API built with Nest.js, offering user authentication, post management, categories and tags, comments, and improved performance with caching and compression.')
+  .setVersion('2.0')
+  .addTag('Blog')
+  .addBearerAuth(
+    { type: 'http', scheme: 'bearer', bearerFormat: 'JWT' },
+    'jwt',
+  )
+  .build();
+
+const document = SwaggerModule.createDocument(app, config);
+SwaggerModule.setup('docs', app, document);
+
 
   app.use(compression());
 
