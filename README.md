@@ -2,7 +2,7 @@
 
 ## Description
 
-A simple blog API built using the Nest.js framework. Hosted live at [Blog API](https://nest-blog-api-hbra.onrender.com).
+A simple blog API built using the Nest.js framework. Hosted live at [Blog API](https://blog-api-v2-1zj3.onrender.com).
 
 This API provides a range of features for managing a blog, including user authentication, post creation and management, categories and tags, comments and feedback, and more. Additionally, the API utilizes caching and compression for improved performance.
 
@@ -92,7 +92,7 @@ Before running the API, ensure you have set up the following environment variabl
 
 ## Documentation
 
-For detailed documentation on how to use the Blog API and its endpoints, refer to the [API Documentation](https://nest-blog-api-hbra.onrender.com/docs).
+For detailed documentation on how to use the Blog API and its endpoints, refer to the [API Documentation](https://blog-api-v2-1zj3.onrender.com/docs).
 
 ## Contributing
 
