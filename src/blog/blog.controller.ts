@@ -19,8 +19,6 @@ import {
   ApiTags,
   ApiOperation,
   ApiResponse,
-  ApiBody,
-  ApiQuery,
   ApiBadRequestResponse,
   ApiBearerAuth,
   ApiInternalServerErrorResponse,
@@ -59,7 +57,6 @@ export class BlogController {
   @Post()
   @HttpCode(HttpStatus.CREATED)
   @ApiOperation({ summary: 'Create a new blog' }) // Add an API operation summary
-  @ApiBody({ type: CreateBlogDto }) // Specify the request body DTO
   async create(@Body() body: CreateBlogDto): Promise<IResponseData<IBlog>> {
     console.log(Req);
 
@@ -85,9 +82,14 @@ export class BlogController {
   // Find blogs based on search criteria
   @Get('search')
   @ApiOperation({ summary: 'Find blogs based on search criteria' })
-  @ApiQuery({ type: FindBlogDto }) // Define the query parameters
   async find(@Query() query: FindBlogDto): Promise<IResponseData<IBlog[]>> {
-    const data = await this.service.find(query);
+    const data = [];
+
+    for (let i = 0; i < 300; i++) {
+      const sdata = await this.service.find(query);
+      data.push(sdata);
+      console.log(`i is currently at ${i}`);
+    }
 
     if (!data) throw new InternalServerErrorException();
     if (data.length === 0) throw new NotFoundException();
@@ -98,7 +100,6 @@ export class BlogController {
   // Check if blogs exist based on search criteria
   @Get('exists')
   @ApiOperation({ summary: 'Check if blogs exist based on search criteria' })
-  @ApiQuery({ type: FindBlogDto }) // Define the query parameters
   async exists(@Query() query: FindBlogDto): Promise<IResponseData<[]>> {
     const data = await this.service.exists(query);
 
@@ -111,7 +112,6 @@ export class BlogController {
   // Get the count of blogs based on search criteria
   @Get('count')
   @ApiOperation({ summary: 'Get the count of blogs based on search criteria' })
-  @ApiQuery({ type: FindBlogDto }) // Define the query parameters
   async getCount(@Query() query: FindBlogDto): Promise<IResponseData<IBlog>> {
     const data = await this.service.getCount(query);
 
@@ -139,9 +139,8 @@ export class BlogController {
   }
 
   // Update an existing blog
-  @Patch(':id/:name')
+  @Patch(':id')
   @ApiOperation({ summary: 'Update an existing blog' })
-  @ApiBody({ type: UpdateBlogDto }) // Specify the request body DTO
   async update(
     @Param() param: BlogIdDto,
     @Body() body: UpdateBlogDto,

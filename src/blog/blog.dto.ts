@@ -23,54 +23,54 @@ export class CreateBlogDto {
   @IsString()
   image: string;
 
-  @ApiProperty()
+  @ApiProperty({ required: false })
   @IsOptional()
   @IsString()
   min_read: number;
 
-  @ApiProperty()
+  @ApiProperty({ required: false })
   @IsOptional()
   is_published: boolean;
 }
 
 export class UpdateBlogDto {
-  @ApiProperty()
+  @ApiProperty({ required: false })
   @IsOptional()
   @IsString()
   title: string;
 
-  @ApiProperty()
+  @ApiProperty({ required: false })
   @IsOptional()
   @IsString()
   content: string;
 
-  @ApiProperty()
+  @ApiProperty({ required: false })
   @IsOptional()
   @IsObjectIdOrHexString()
   author: string;
 
-  @ApiProperty()
+  @ApiProperty({ required: false })
   @IsOptional()
   @IsString()
   image: string;
 
-  @ApiProperty()
+  @ApiProperty({ required: false })
   @IsOptional()
   @IsString()
   min_read: number;
 
-  @ApiProperty()
+  @ApiProperty({ required: false })
   @IsOptional()
   is_published: boolean;
 }
 
 export class FindBlogDto {
-  @ApiProperty()
+  @ApiProperty({ required: false })
   @IsOptional()
   @IsObjectIdOrHexString()
   _id: string;
 
-  @ApiProperty()
+  @ApiProperty({ required: false })
   @IsOptional()
   @IsString()
   title: string;
