@@ -83,13 +83,7 @@ export class BlogController {
   @Get('search')
   @ApiOperation({ summary: 'Find blogs based on search criteria' })
   async find(@Query() query: FindBlogDto): Promise<IResponseData<IBlog[]>> {
-    const data = [];
-
-    for (let i = 0; i < 300; i++) {
-      const sdata = await this.service.find(query);
-      data.push(sdata);
-      console.log(`i is currently at ${i}`);
-    }
+    const data = await this.service.find(query);
 
     if (!data) throw new InternalServerErrorException();
     if (data.length === 0) throw new NotFoundException();
