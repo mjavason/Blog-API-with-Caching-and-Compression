@@ -6,6 +6,7 @@ import {
   ValidationError,
   ValidationPipe,
 } from '@nestjs/common';
+import * as compression from 'compression';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -48,6 +49,8 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('docs', app, document);
+
+  app.use(compression());
 
   await app.listen(5000);
   console.log(`App listening on port ${5000}`);
